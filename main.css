@@ -1,0 +1,17 @@
+.main {
+    background: rgba(199, 199, 199, 0.81);
+}
+#patientschart {
+    width:100%;
+    margin: 0 auto;
+}
+
+#date-chart {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.dc-data-count {
+    width: 100%;
+    margin: 0 auto;
+}

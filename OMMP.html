@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Crossfilter OMMP Test</title>
+    <!--libraries for mapping and data-->
+    <!--Leaflet-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" >
+    <!--DC-->
+    <link rel="stylesheet" href="https://dc-js.github.io/dc.js/css/dc.min.css">
+    <!--Bootstrap-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--cloudflare animation-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!--Storymap css-->
+    <link rel="stylesheet" type="text/css" href="css/storymap.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="css/LPRO_Style.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!--Webfont if ours doesn't work-->
+    <link href="https://fonts.googleapis.com/css?family=Sorts+Mill+Goudy" rel="stylesheet">
+    <style>
+        .main {
+            background: rgba(243, 243, 243, 0.81);
+        }
+        #pat_APR17chart {
+            width:100%;
+            margin: 0 auto;
+        }
+        #date-chart {
+            width: 100%;
+            margin: 0 auto;
+        }
+        .dc-data-count {
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>
+
+    <script src="https://dc-js.github.io/dc.js/js/d3.js"></script>
+    <script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+    <script src="https://dc-js.github.io/dc.js/js/dc.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--story map plugin-->
+    <script src="js/storymap.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 main">
+            <div class="dc-data-count"></div>
+            <h4>County Patients</h4>
+            <div id="patientsChart"></div>
+            <h4>County Caregivers</h4>
+            <div id="depth-chart"></div>
+            <h4>County Growsites</h4>
+            <div id="date-chart"></div>
+            <h4>County Growers</h4>
+            <h4>County Caregivers</h4>
+        </div>
+        <div id="map" class="col-sm-6 col-md-8 sidebar"></div>
+    </div>
+</div>
+
+<script>
+    var map = L.map('map', {zoomControl: false, scrollWheelZoom: true}).setView([44.0304255,-124.2701962], 6);
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}').addTo(map);
+    d3.json('js/OR_OMMP.geojson', function(data) {
+        //create crossfilter and dimensions
+        var filter = crossfilter(data.features); //filter is the root object of crossfilter
+        var all = filter.groupAll();  // study some of the key functions of crossfilter, such as groupAll, dimension
+        var everything = filter.dimension(function(d) {
+            return d
+        });
+        var geomDimension = filter.dimension(function(d) {
+            return d.geometry
+        });
+        var Patients_Apr17Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Apr17DimensionGroup = Patients_Apr17Dimension.group();
+
+        var Patients_Jan17Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Jan17DimensionGroup = Patients_Jan17Dimension.group();
+
+        var Patients_Oct16Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Oct16DimensionGroup = Patients_Oct16Dimension.group();
+
+        var Patients_Jul16Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Jul16DimensionGroup = Patients_Jul16Dimension.group();
+
+        var Patients_Apr16Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Apr16DimensionGroup = Patients_Apr16Dimension.group();
+
+        var Patients_Jan16Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Jan16DimensionGroup = Patients_Jan16Dimension.group();
+
+        var Patients_Oct15Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Oct15DimensionGroup = Patients_Oct15Dimension.group();
+
+        var Patients_Jul15Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Jul15DimensionGroup = Patients_Jul15Dimension.group();
+
+        var Patients_Apr15Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Apr15DimensionGroup = Patients_Apr15Dimension.group();
+
+        var Patients_Jan15Dimension = filter.dimension(function(d) {
+            var mar = d.properties.Patientsients;
+            return  Patientsients < 50    ? '50-499' :
+                    Patientsients < 500   ? '500-999' :
+                    Patientsients < 1000  ? '1,000-4,999' :
+                    Patientsients < 5000  ? '5,000-9,999' :
+                    Patientsients < 10000 ? '10,000-14,999' :
+                                            '>15,000'
+        });
+        var Patients_Jan15DimensionGroup = Patients_Jan15Dimension.group();
+
+
+
+        var Caregivers_Apr17Dimension = filter.dimension(function(d) {
+            var depth = d.properties.depth;
+            return  depth <   50 ? ' <50'   :
+                    depth <  10 ? ' 5-10' :
+                    depth <  50 ? '10-50' :
+                    depth < 100 ? '50-100':
+                            '>100'
+        });
+        var depthDimensionGroup = depthDimension.group();
+        var dateDimension = filter.dimension(function(d) {
+            return d3.time.day(new Date(d.properties.time));
+        });
+        var dateDimensionGroup = dateDimension.group();
+        //add the data to the map
+        var geoJsonLayer = L.geoJson('assets/OR_OMMP.geojson',{
+            type: 'FeatureCollection',
+            features: geomDimension.top(Infinity)
+        })
+    }).addTo(map);
+        //create charts
+        var patientsChart = dc.barChart('#patientschart');
+        patientsChart
+            .height(180)
+            .margins({top: 10, right: 50, bottom: 30, left: 40})
+            .dimension(Patients_Apr17Dimension, Patients_Jan17Dimension, Patients_Oct16Dimensionm, Patients_Jul16Dimension,
+            Patients_Apr16Dimension, Patients_Jan16Dimension, Patients_Oct15Dimension, Patients_Jul15Dimension, Patients_Apr15Dimension,
+            Patients_Jan15Dimension)
+            .group(Patients_Apr17DimensionGroup, Patients_Jan17DimensionGroup, Patients_Oct16DimensionGroup, Patients_Jul16DimensionGroup,
+            Patients_Apr16DimensionGroup, Patients_Jan16DimensionGroup, Patients_Oct15DimensionGroup, Patients_Jul15DimensionGroup,
+            Patients_Apr15DimensionGroup, Patients_Jan15DimensionGroup)
+            .elasticY(true)
+            .x(d3.scale.cardinal())
+            .xUnits(dc.units.cardinal())
+            .yAxis()
+            .ticks(6);
+
+        var depthChart = dc.barChart('#depth-chart');
+        depthChart
+            .height(180)
+            .margins({top: 10, right: 50, bottom: 30, left: 40})
+            .dimension(depthDimension)
+            .group(depthDimensionGroup)
+            .elasticY(true)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units.ordinal)
+            .yAxis()
+            .ticks();
+
+        var dateChart = dc.lineChart('#date-chart');
+        dateChart
+            .renderArea(true)
+            .height(200)
+            .transitionDuration(1000)
+            .margins({top: 30, right: 50, bottom: 25, left: 40})
+            .dimension(dateDimension)
+            .group(dateDimensionGroup)
+            .elasticY(true)
+            .x(d3.time.scale().domain([new Date(2016, 7, 15), new Date(2016, 8, 1)]))
+            .xUnits(d3.time.days);
+        var earthquakeCount = dc.dataCount('.dc-data-count');
+        earthquakeCount
+            .dimension(filter)
+            .group(all)
+            .html({
+                some: '<strong>%filter-count</strong> selected out of <strong>%total-count</strong> records' +
+                ' | <a href=\'javascript:dc.filterAll(); dc.renderAll();\'>Reset All</a>',
+                all: 'All records selected. Please click on the graph or change the map view to apply filters.'
+            });
+        dc.renderAll();
+        //chart listeners
+        patientsChart.on('filtered', function(chart, filter) {
+            updateMap()
+        });
+        depthChart.on('filtered', function(chart, filter) {
+            updateMap()
+        });
+        dateChart.on('filtered', function(chart, filter) {
+            updateMap()
+        });
+        function updateMap() {
+            geoJsonLayer.clearLayers();
+            geoJsonLayer.addData({
+                type: 'FeatureCollection',
+                features: everything.top(Infinity)
+            });
+        }
+        //map listeners
+        map.on('moveend', function() {
+            updateMapFilter()
+        });
+        map.on('zoomend', function() {
+            updateMapFilter()
+        });
+        function updateMapFilter() {
+            geomDimension.filter(function(d) {
+                return map.getBounds().contains(L.geoJSON(d).getBounds())
+            });
+            dc.redrawAll();
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.feature-label {
+    font-family:  'Goudy Old Style', 'Sorts Mill Goudy', serif;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0 0 3px #FFFFFF;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    box-shadow: none;
+}
+
+.feature-tooltip {
+    font-family:  'Goudy Old Style', 'Sorts Mill Goudy', serif;
+    color: black;
+    font-size:14px;
+    font-weight: lighter;
+}
+
+
+.glyphicon-one-fine-smaller-dot:before {
+    content:"\25cf";
+    font-size: 1em;
+}
+.glow-effect {
+    color: rgba(0, 255, 0, .6);
+    text-shadow: 0 0 10px rgb(0, 255, 0);
+}
