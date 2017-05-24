@@ -25,15 +25,19 @@
         .main {
             background: rgba(243, 243, 243, 0.81);
         }
-        #pat_APR17chart {
+        #patientsChart {
             width:100%;
             margin: 0 auto;
         }
-        #date-chart {
+        #caregiversChart {
             width: 100%;
             margin: 0 auto;
         }
-        .dc-data-count {
+        .growersChart {
+            width: 100%;
+            margin: 0 auto;
+        }
+        #growsitesChart {
             width: 100%;
             margin: 0 auto;
         }
@@ -54,15 +58,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 col-md-4 main">
-            <div class="dc-data-count"></div>
             <h4>County Patients</h4>
             <div id="patientsChart"></div>
             <h4>County Caregivers</h4>
-            <div id="depth-chart"></div>
+            <div id="caregiversChart"></div>
             <h4>County Growsites</h4>
-            <div id="date-chart"></div>
+            <div id="growersChart"></div>
             <h4>County Growers</h4>
-            <h4>County Caregivers</h4>
+            <div id="growsitesChart"></div>
         </div>
         <div id="map" class="col-sm-6 col-md-8 sidebar"></div>
     </div>
@@ -82,111 +85,111 @@
             return d.geometry
         });
         var Patients_Apr17Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Apr17;
+            return  Patients_Apr17 < 50    ? '50-499' :
+                    Patients_Apr17 < 500   ? '500-999' :
+                    Patients_Apr17 < 1000  ? '1,000-4,999' :
+                    Patients_Apr17 < 5000  ? '5,000-9,999' :
+                    Patients_Apr17 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Apr17DimensionGroup = Patients_Apr17Dimension.group();
 
         var Patients_Jan17Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Jan17;
+            return  Patients_Jan17 < 50    ? '50-499' :
+                    Patients_Jan17 < 500   ? '500-999' :
+                    Patients_Jan17 < 1000  ? '1,000-4,999' :
+                    Patients_Jan17 < 5000  ? '5,000-9,999' :
+                    Patients_Jan17 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Jan17DimensionGroup = Patients_Jan17Dimension.group();
 
         var Patients_Oct16Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Oct16;
+            return  Patients_Oct16 < 50    ? '50-499' :
+                    Patients_Oct16 < 500   ? '500-999' :
+                    Patients_Oct16 < 1000  ? '1,000-4,999' :
+                    Patients_Oct16 < 5000  ? '5,000-9,999' :
+                    Patients_Oct16 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Oct16DimensionGroup = Patients_Oct16Dimension.group();
 
         var Patients_Jul16Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Jul16;
+            return  Patients_Jul16 < 50    ? '50-499' :
+                    Patients_Jul16 < 500   ? '500-999' :
+                    Patients_Jul16 < 1000  ? '1,000-4,999' :
+                    Patients_Jul16 < 5000  ? '5,000-9,999' :
+                    Patients_Jul16 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Jul16DimensionGroup = Patients_Jul16Dimension.group();
 
         var Patients_Apr16Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Apr16;
+            return  Patients_Apr16 < 50    ? '50-499' :
+                    Patients_Apr16 < 500   ? '500-999' :
+                    Patients_Apr16 < 1000  ? '1,000-4,999' :
+                    Patients_Apr16 < 5000  ? '5,000-9,999' :
+                    Patients_Apr16 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Apr16DimensionGroup = Patients_Apr16Dimension.group();
 
         var Patients_Jan16Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Jan16;
+            return  Patients_Jan16 < 50    ? '50-499' :
+                    Patients_Jan16 < 500   ? '500-999' :
+                    Patients_Jan16 < 1000  ? '1,000-4,999' :
+                    Patients_Jan16 < 5000  ? '5,000-9,999' :
+                    Patients_Jan16 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Jan16DimensionGroup = Patients_Jan16Dimension.group();
 
         var Patients_Oct15Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Oct15;
+            return  Patients_Oct15 < 50    ? '50-499' :
+                    Patients_Oct15 < 500   ? '500-999' :
+                    Patients_Oct15 < 1000  ? '1,000-4,999' :
+                    Patients_Oct15 < 5000  ? '5,000-9,999' :
+                    Patients_Oct15 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Oct15DimensionGroup = Patients_Oct15Dimension.group();
 
         var Patients_Jul15Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Jul15;
+            return  Patients_Jul15 < 50    ? '50-499' :
+                    Patients_Jul15 < 500   ? '500-999' :
+                    Patients_Jul15 < 1000  ? '1,000-4,999' :
+                    Patients_Jul15 < 5000  ? '5,000-9,999' :
+                    Patients_Jul15 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Jul15DimensionGroup = Patients_Jul15Dimension.group();
 
         var Patients_Apr15Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Apr15;
+            return  Patients_Apr15 < 50    ? '50-499' :
+                    Patients_Apr15 < 500   ? '500-999' :
+                    Patients_Apr15 < 1000  ? '1,000-4,999' :
+                    Patients_Apr15 < 5000  ? '5,000-9,999' :
+                    Patients_Apr15 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Apr15DimensionGroup = Patients_Apr15Dimension.group();
 
         var Patients_Jan15Dimension = filter.dimension(function(d) {
-            var mar = d.properties.Patientsients;
-            return  Patientsients < 50    ? '50-499' :
-                    Patientsients < 500   ? '500-999' :
-                    Patientsients < 1000  ? '1,000-4,999' :
-                    Patientsients < 5000  ? '5,000-9,999' :
-                    Patientsients < 10000 ? '10,000-14,999' :
+            var mar = d.properties.Patients_Jan15;
+            return  Patients_Jan15 < 50    ? '50-499' :
+                    Patients_Jan15 < 500   ? '500-999' :
+                    Patients_Jan15 < 1000  ? '1,000-4,999' :
+                    Patients_Jan15 < 5000  ? '5,000-9,999' :
+                    Patients_Jan15 < 10000 ? '10,000-14,999' :
                                             '>15,000'
         });
         var Patients_Jan15DimensionGroup = Patients_Jan15Dimension.group();
@@ -213,7 +216,7 @@
         })
     }).addTo(map);
         //create charts
-        var patientsChart = dc.barChart('#patientschart');
+        var patientsChart = dc.barChart('#patientsChart');
         patientsChart
             .height(180)
             .margins({top: 10, right: 50, bottom: 30, left: 40})
@@ -266,12 +269,15 @@
         patientsChart.on('filtered', function(chart, filter) {
             updateMap()
         });
-        depthChart.on('filtered', function(chart, filter) {
+        caregiversChart.on('filtered', function(chart, filter) {
             updateMap()
         });
-        dateChart.on('filtered', function(chart, filter) {
+        growersChart.on('filtered', function(chart, filter) {
             updateMap()
         });
+        growsitiesChart.on('filtered', function(chart, filter) {
+        updateMap()
+    });
         function updateMap() {
             geoJsonLayer.clearLayers();
             geoJsonLayer.addData({
